@@ -26,22 +26,22 @@ export const Paginated = () => {
       {prev !== null ? (
         
       
-      <a href="#" onClick={(e) => handlePrev(e)}>
+      <a href={prev} onClick={(e) => handlePrev(e)}>
         <button>Prev</button>
       </a>
       ) : (
-        <a href="#" onClick={(e) => handlePrev(e)}>
+        <a href={prev} onClick={(e) => handlePrev(e)}>
           <button disabled>Prev</button>
         </a>
       )}
     
     {next !== null ? (
       
-      <a href="#" onClick={(e) => handleNext(e)}>
+      <a href={next} onClick={(e) => handleNext(e)}>
         <button>Next</button>
       </a>
       ) : (
-        <a href="#" onClick={(e) => handleNext(e)}>
+        <a href={prev} onClick={(e) => handleNext(e)}>
           <button disabled>Next</button>
         </a>
       )}

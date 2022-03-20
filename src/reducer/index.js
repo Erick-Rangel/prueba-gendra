@@ -1,8 +1,7 @@
-import { GET_CHARACTERS, GET_EPISODES, GET_LOCATIONS, GET_SEARCH, GET_NEXT, GET_PREV, GET_SEARCH_EPISODES} from '../actions/types';
+import { GET_CHARACTERS, GET_EPISODES, GET_SEARCH, GET_NEXT, GET_PREV, GET_SEARCH_EPISODES} from '../actions/types';
 
 const initialState = {
   characters: [],
-  locations: [],
   episodes: [],
   next:[],
   prev:[],

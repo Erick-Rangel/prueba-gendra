@@ -3,7 +3,6 @@ import { getCharacters, getEpisodes } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "./Card";
 import { SearchBar } from "./SearchBar";
-import { CardEpisodes } from "./CardEpisodes";
 import { Paginated } from "./Paginated";
 import { Episodes } from "./Episodes";
 
