@@ -5,4 +5,5 @@ export const GET_SEARCH_EPISODES = 'GET_SEARCH_EPISODES';
 export const GET_SEARCH = 'GET_SEARCH';
 export const GET_NEXT = 'GET_NEXT';
 export const GET_PREV = 'GET_PREV';
-
+export const INFO = 'INFO';
+export const PAGINATED = 'PAGINATED';

@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 export const CardEpisodes = ({episode}) => {
   return (
     <div>
-
       <Link to={`/details/${episode.id}`}>
         <div key={episode.id}>
           <img src={episode.image} alt={episode.name} />
@@ -21,7 +20,7 @@ export const CardEpisodes = ({episode}) => {
                 </ul>
                   </Link>
             ))}
-          </span>
+          </span> 
     </div>
   
   );

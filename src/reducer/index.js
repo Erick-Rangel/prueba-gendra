@@ -1,10 +1,12 @@
-import { GET_CHARACTERS, GET_EPISODES, GET_SEARCH, GET_NEXT, GET_PREV, GET_SEARCH_EPISODES} from '../actions/types';
+import { GET_CHARACTERS, GET_EPISODES, GET_SEARCH, GET_NEXT, GET_PREV, GET_SEARCH_EPISODES, INFO, PAGINATED} from '../actions/types';
 
 const initialState = {
   characters: [],
   episodes: [],
   next:[],
   prev:[],
+  info:[],
+  paginated:[],
 };
 
 export default function RootReducer(state = initialState, action) {
@@ -15,6 +17,7 @@ export default function RootReducer(state = initialState, action) {
         characters: action.payload,
         next: action.next,
         prev: action.prev,
+        info: action.info,
       };
 
     case GET_EPISODES:
@@ -37,6 +40,7 @@ export default function RootReducer(state = initialState, action) {
       return {
         ...state,
         characters: action.payload,
+        paginated: action.payload,
         next: action.next,
         prev: action.prev
       };
@@ -55,6 +59,16 @@ export default function RootReducer(state = initialState, action) {
         prev: action.prev
       };
 
+      case  INFO:
+      return {
+        ...state,
+        info: action.payload
+      };
+      case PAGINATED:
+      return {
+        ...state,
+        paginated: action.payload
+      };
       
     default:
       return state;

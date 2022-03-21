@@ -1,50 +1,54 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { getNext, getPrev } from "../actions";
+import { getNext, getPaginated, getPrev } from "../actions";
+import styles from "./Pagination.module.scss"
 
-export const Paginated = () => {
+export const Paginated = ({pageNumber, setPageNumber}) => {
   const dispatch = useDispatch();
 
-  const next = useSelector((state) => state.next);
-  const prev = useSelector((state) => state.prev);
+let pageChange = (page) => {
+  setPageNumber(page.selected + 1);
+  dispatch(getPaginated(page.selected + 1));
+};
 
-  const handleNext = (e) => {
-    e.preventDefault();
-    dispatch(getNext(next));
+  const [width, setWidth] = useState(window.innerWidth);
+  useEffect(() => {
+    dispatch(getPaginated(pageNumber));
+  }, [dispatch]);
+
+  const info = useSelector((state) => state.info);
+
+  const updateDimensions = () => {
+    setWidth(window.innerWidth);
   };
 
-  const handlePrev = (e) => {
-    e.preventDefault();
-    dispatch(getPrev(prev));
-  };
-
-
+  useEffect(() => {
+    window.addEventListener("resize", updateDimensions);
+    return () => {
+      window.removeEventListener("resize", updateDimensions);
+    };
+  }, []);
 
 
   return (
     <div>
-      {prev !== null ? (
-        
-      
-      <a href={prev} onClick={(e) => handlePrev(e)}>
-        <button>Prev</button>
-      </a>
-      ) : (
-        <a href={prev} onClick={(e) => handlePrev(e)}>
-          <button disabled>Prev</button>
-        </a>
-      )}
-    
-    {next !== null ? (
-      
-      <a href={next} onClick={(e) => handleNext(e)}>
-        <button>Next</button>
-      </a>
-      ) : (
-        <a href={prev} onClick={(e) => handleNext(e)}>
-          <button disabled>Next</button>
-        </a>
-      )}
+      <ReactPaginate
+        forcePage={pageNumber === 1 ? 0 : pageNumber - 1}
+        marginPagesDisplayed={width < 576 ? 1 : 2}
+        pageRangeDisplayed={width < 576 ? 1 : 2}
+        pageCount={info?.pages}
+        onPageChange={pageChange}
+        className={`${styles.pagination} justify-content-center my-4 gap-4`}
+        nextLabel="Next"
+        previousLabel="Prev"
+        initialPage={41}
+        previousClassName={` ${styles.prev} btn btn-primay fs-5 `}
+        nextClassName={`${styles.next} btn btn-primary fs-5 `}
+        activeClassName="active"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+      />
     </div>
   );
 };

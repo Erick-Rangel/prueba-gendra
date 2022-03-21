@@ -1,38 +1,72 @@
-import React, { useEffect} from "react";
-import { getCharacters, getEpisodes } from "../actions";
+import React, { useState, useEffect } from "react";
+import { getCharacters, getSearch } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "./Card";
 import { SearchBar } from "./SearchBar";
 import { Paginated } from "./Paginated";
-import { Episodes } from "./Episodes";
-
+import { NavBar } from "./NavBar";
+import CardMui from "./CardMui";
+import { Filter } from "./filters/Filter";
+  
 export const Home = () => {
   const dispatch = useDispatch();
 
+  const [pageNumber, setPageNumber] = useState(1);
+  const [search, setSearch] = useState("");
+  const [status, setStatus] = useState("")
+  const [gender, setGender] = useState("")
+  const [species, setSpecies] = useState("")
 
   useEffect(() => {
-    dispatch(getEpisodes());
     dispatch(getCharacters());
   }, [dispatch]);
 
-  
+const handleSearchAndFilters = (e)=>{
+  e.preventDefault();
+  dispatch(getSearch(search, pageNumber, status, gender, species))
+}
+
+  const paginated = useSelector((state) => state.paginated);
   const characters = useSelector((state) => state.characters);
-  const episodes = useSelector((state) => state.episodes);
- 
-
+  const info = useSelector((state) => state.info);
   return (
-    <div>
-      <h1>Home</h1>
-      <SearchBar/>
-      <h2>Characters</h2>
+    <div className="App">
+      <div className="container">
+        <div className="row">
+          <NavBar />
+          <SearchBar 
+          search={search}
+          pageNumber={pageNumber}
+          setSearch={setSearch} setPageNumber={setPageNumber} />
 
-<Paginated  />
+          <h2 className="text-center mb-3">Characters</h2>
 
-      <Card key={characters.id} characters={characters} />
+          <div className="col-lg-15 col-12">
+              <Filter
+              handleSearchAndFilters={handleSearchAndFilters}
+              pageNumber={pageNumber}
+              status={status}
+              setStatus={setStatus}
+              setGender={setGender}
+              setSpecies={setSpecies}
+              setPageNumber={setPageNumber}
+              />
+            <div className="row">
 
-
-      
-      <Episodes episodes={episodes} />
-     </div>
+              <Card
+                paginated={paginated}
+                key={characters.id}
+                characters={characters}
+              />
+              <Paginated
+                pageNumber={pageNumber}
+                info={info}
+                setPageNumber={setPageNumber}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };

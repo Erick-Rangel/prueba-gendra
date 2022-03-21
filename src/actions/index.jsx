@@ -6,6 +6,7 @@ import {
   GET_NEXT,
   GET_PREV,
   GET_SEARCH_EPISODES,
+  PAGINATED,
 } from "./types";
 
 import axios from "axios";
@@ -15,11 +16,28 @@ export const getCharacters = () => async (dispatch) => {
   let response = await axios.get(url);
   let next = response.data.info.next;
   let prev = response.data.info.prev;
+  let info = response.data.info;
   dispatch({
     type: GET_CHARACTERS,
     payload: response.data.results,
     next: next,
     prev: prev,
+    info: info,
+  });
+};
+
+export const getPaginated = (pageNumber) => async (dispatch) => {
+  let url = `https://rickandmortyapi.com/api/character/?page=${pageNumber}`;
+  let response = await axios.get(url);
+  let next = response.data.info.next;
+  let prev = response.data.info.prev;
+  let info = response.data.info;
+  dispatch({
+    type: PAGINATED,
+    payload: response.data.results,
+    next: next,
+    prev: prev,
+    info: info,
   });
 };
 
@@ -28,11 +46,13 @@ export const getEpisodes = () => async (dispatch) => {
   let response = await axios.get(url);
   let next = response.data.info.next;
   let prev = response.data.info.prev;
+  let info = response.data.info;
   dispatch({
     type: GET_EPISODES,
     payload: response.data.results,
     next: next,
     prev: prev,
+    info: info,
   });
 };
 
@@ -45,32 +65,18 @@ export const getLocations = () => async (dispatch) => {
   });
 };
 
-export const getSearch = (name) => async (dispatch) => {
+export const getSearch = (name,pageNumber) => async (dispatch) => {
   const data = await axios.get(
-    `https://rickandmortyapi.com/api/character/?name=${name}`
+    `https://rickandmortyapi.com/api/character/?page=${pageNumber}&name=${name}`
   );
-  let next = data.data.info.next;
-  let prev = data.data.info.prev;
+  let info = data.data.info;
   dispatch({
     type: GET_SEARCH,
     payload: data.data.results,
-    next: next,
-    prev: prev,
+    info: info,
   });
 };
 
-
-export const getSearchEpisodes = (id) => async (dispatch) => {
-  const data = await axios.get(
-    `https://rickandmortyapi.com/api/episode/${id}`
-  );
-  console.log(data);
-  dispatch({
-    type: GET_SEARCH_EPISODES,
-    payload: data.data,
-  
-  });
-};
 
 
 export const getNext = (next) => async (dispatch) => {
@@ -78,11 +84,13 @@ export const getNext = (next) => async (dispatch) => {
   let response = await axios.get(url);
   let json = response.data.info.next;
   let prev = response.data.info.prev;
+  let info = response.data.info;
   dispatch({
     type: GET_NEXT,
     payload: response.data.results,
     next: json,
     prev: prev,
+    info: info,
   });
 };
 
