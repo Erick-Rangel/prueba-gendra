@@ -1,9 +1,8 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import {Gender} from "./category/Gender"
 import {Species} from "./category/Species"
 import {Status} from "./category/Status";
-
+ 
 export const Filter = ({pageNumber, setPageNumber, setStatus, setGender, setSpecies, handleSearchAndFilters}) =>{
     /* const dispatch = useDispatch(); */
 
@@ -36,7 +35,7 @@ return(
             setPageNumber={setPageNumber}
             setGender={setGender}
             />
-            
+
         </div>
     </div>
 )
