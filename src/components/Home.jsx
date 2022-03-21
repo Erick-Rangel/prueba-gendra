@@ -5,7 +5,6 @@ import { Card } from "./Card";
 import { SearchBar } from "./SearchBar";
 import { Paginated } from "./Paginated";
 import { NavBar } from "./NavBar";
-import CardMui from "./CardMui";
 import { Filter } from "./filters/Filter";
   
 export const Home = () => {

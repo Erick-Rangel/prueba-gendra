@@ -3,10 +3,9 @@ import { useDispatch } from "react-redux";
 import {Gender} from "./category/Gender"
 import {Species} from "./category/Species"
 import {Status} from "./category/Status";
-import { FilterButton } from "./FilterButton";
 
 export const Filter = ({pageNumber, setPageNumber, setStatus, setGender, setSpecies, handleSearchAndFilters}) =>{
-    const dispatch = useDispatch();
+    /* const dispatch = useDispatch(); */
 
 let clear = () =>{
     setStatus("");
@@ -33,7 +32,11 @@ return(
             setPageNumber={setPageNumber}
                 setSpecies={setSpecies}
             />
-
+            <Gender
+            setPageNumber={setPageNumber}
+            setGender={setGender}
+            />
+            
         </div>
     </div>
 )

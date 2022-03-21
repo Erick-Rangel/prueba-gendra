@@ -5,7 +5,6 @@ import {
   GET_SEARCH,
   GET_NEXT,
   GET_PREV,
-  GET_SEARCH_EPISODES,
   PAGINATED,
 } from "./types";
 

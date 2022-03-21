@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactPaginate from "react-paginate";
 import { useDispatch, useSelector } from "react-redux";
-import { getNext, getPaginated, getPrev } from "../actions";
+import { getPaginated } from "../actions";
 import styles from "./Pagination.module.scss"
 
 export const Paginated = ({pageNumber, setPageNumber}) => {
@@ -15,7 +15,7 @@ let pageChange = (page) => {
   const [width, setWidth] = useState(window.innerWidth);
   useEffect(() => {
     dispatch(getPaginated(pageNumber));
-  }, [dispatch]);
+  }, [dispatch, pageNumber]);
 
   const info = useSelector((state) => state.info);
 

@@ -7,7 +7,7 @@ export const Card = ({ paginated }) => {
   let display;
   if (paginated) {
     display = paginated.map((character) => {
-      let { id, name, image, status, species, gender } = character;
+      let { id, name, image, status, gender } = character;
       
       return (
         <div

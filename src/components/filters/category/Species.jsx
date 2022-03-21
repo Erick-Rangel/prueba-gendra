@@ -35,8 +35,7 @@ export const Species = ({ setSpecies, setPageNumber }) => {
         data-bs-parent="#accordionExample"
       >
         <div className="accordion-body d-flex flex-wrap  gap-3">
-          {species.
-          map((item, index) => {
+          {species.map((item, index) => {
             return (
               <FilterButton
                 name="species"

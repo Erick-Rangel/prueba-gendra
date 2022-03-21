@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { getSearch} from "../actions";
 import { useDispatch } from "react-redux";
 import styles from "./Search.module.scss"
