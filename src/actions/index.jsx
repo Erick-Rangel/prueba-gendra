@@ -71,7 +71,6 @@ export const getGender = (gender) =>
   async (dispatch) =>{
     const data = await axios.get(`https://rickandmortyapi.com/api/character/?gender=${gender}`)
     let info = data.data.info
-    console.log(data)
     dispatch({
       type: GENDER,
       payload: data.data.results,
