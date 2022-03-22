@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import {Card} from "../components/Card";
 import { InputGroup } from "./filters/category/InputGroup";
@@ -7,7 +6,7 @@ import { NavBar } from "./NavBar";
 export const Episodes = () => {
   let [results, setResults] = useState([]);
   let [info, setInfo] = useState([]);
-  let { air_date, episode, name } = info;
+  let { air_date, name } = info;
   let [id, setID] = useState(1);
 
   let api = `https://rickandmortyapi.com/api/episode/${id}`;

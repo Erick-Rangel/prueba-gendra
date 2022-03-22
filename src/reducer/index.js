@@ -1,4 +1,4 @@
-import { GET_CHARACTERS, GET_EPISODES, GET_SEARCH, INFO, PAGINATED, GENDER, SPECIES,STATUS} from '../actions/types';
+import { GET_CHARACTERS, GET_EPISODES, GET_SEARCH, PAGINATED, GENDER, SPECIES,STATUS} from '../actions/types';
 
 const initialState = {
   characters: [],
@@ -52,13 +52,13 @@ export default function RootReducer(state = initialState, action) {
         case SPECIES:
           return{
             ...state,
-            species: action.payload
+            paginated: action.payload
           }
 
           case STATUS:
             return{
               ...state,
-              status: action.payload
+              paginadet: action.payload
             }
     default:
       return state;

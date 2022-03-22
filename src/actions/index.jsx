@@ -75,3 +75,25 @@ export const getGender = (gender) =>
       payload: data.data.results,
     })
   }
+
+  export const getSpecies = (species) =>
+    async (dispatch) => {
+      const data = await axios.get(
+        `https://rickandmortyapi.com/api/character/?species=${species}`);
+      dispatch({
+        type: SPECIES,
+        payload: data.data.results,
+      });
+
+    }
+
+    export const getStatus = (status) =>
+      async (dispatch) => {
+        const data = await axios.get(
+          `https://rickandmortyapi.com/api/character/?status=${status}`);
+        dispatch({
+          type: STATUS,
+          payload: data.data.results,
+        });
+      }
+      
