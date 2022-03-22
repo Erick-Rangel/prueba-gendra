@@ -69,10 +69,13 @@ export const getSearch = (name, pageNumber) => async (dispatch) => {
 
 export const getGender = (gender) =>
   async (dispatch) =>{
-    const data = await axios.get(`https://rickandmortyapi.com/api/character/?gender?${gender}`)
+    const data = await axios.get(`https://rickandmortyapi.com/api/character/?gender=${gender}`)
+    let info = data.data.info
+    console.log(data)
     dispatch({
       type: GENDER,
       payload: data.data.results,
+      info : info,
     })
   }
 
@@ -80,9 +83,11 @@ export const getGender = (gender) =>
     async (dispatch) => {
       const data = await axios.get(
         `https://rickandmortyapi.com/api/character/?species=${species}`);
+        let info = data.data.info;
       dispatch({
         type: SPECIES,
         payload: data.data.results,
+        info: info,
       });
 
     }
@@ -91,9 +96,10 @@ export const getGender = (gender) =>
       async (dispatch) => {
         const data = await axios.get(
           `https://rickandmortyapi.com/api/character/?status=${status}`);
+          let info = data.data.info;
         dispatch({
           type: STATUS,
           payload: data.data.results,
+          info: info,
         });
       }
-      

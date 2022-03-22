@@ -1,17 +1,15 @@
-import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import "./Navbar.module.scss";
-import "../App.css"
+import "../App.css";
 
 export const NavBar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
       <div className="container">
-        <Link to="/" className="navbard-brand fs-3 ubuntu">
+        <Link to="/" className="navbar-brand fs-3 ubuntu">
           Rick and Morty Fanpage
         </Link>
       </div>
-
       <button
         className="navbar-toggler border-0"
         type="button"
@@ -21,8 +19,8 @@ export const NavBar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span className="fas fa-bars open text-dark"></span>
-        <span className="fas fa-times close text-dark"></span>
+        <span class="fas fa-bars open text-dark">menu</span>
+        <span class="fas fa-times close text-dark"></span>
       </button>
       <div
         className="collapse navbar-collapse justify-content-end"

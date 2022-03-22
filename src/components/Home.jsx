@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { getCharacters, getGender, getSearch } from "../actions";
+import React, { useEffect, useState } from "react";
+import { getCharacters, getGender, getPaginated, getSpecies, getStatus } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "./Card";
 import { SearchBar } from "./SearchBar";
@@ -15,20 +15,24 @@ export const Home = () => {
   const [status, setStatus] = useState("")
   const [gender, setGender] = useState("")
   const [species, setSpecies] = useState("")
+  
+  const paginated = useSelector((state) => state.paginated);
+  
+useEffect(() => {
+  if(paginated <= 0 ){
+dispatch(getCharacters());
+  }
+}, [dispatch]);
 
-  useEffect(() => {
-    dispatch(getCharacters());
-    dispatch(getGender(gender))
-  }, [dispatch, gender]);
+const info = useSelector((state) => state.info);
 
-const handleSearchAndFilters = (e)=>{
-  e.preventDefault();
-  dispatch(getSearch(search, pageNumber, status, gender, species))
+
+const handleSearchAndFilters = ()=>{
+  dispatch(getStatus(status))
+  dispatch(getGender(gender))
+  dispatch(getSpecies(species))
 }
 
-  const paginated = useSelector((state) => state.paginated);
-  const characters = useSelector((state) => state.characters);
-  const info = useSelector((state) => state.info);
   return (
     <div className="App">
       <div className="container">
@@ -42,6 +46,7 @@ const handleSearchAndFilters = (e)=>{
           <h2 className="text-center mb-3">Characters</h2>
 
           <div className="col-lg-15 col-12">
+            <div className="row">
               <Filter
               handleSearchAndFilters={handleSearchAndFilters}
               pageNumber={pageNumber}
@@ -51,16 +56,14 @@ const handleSearchAndFilters = (e)=>{
               setSpecies={setSpecies}
               setPageNumber={setPageNumber}
               />
-            <div className="row">
 
               <Card
                 paginated={paginated}
-                key={characters.id}
-                characters={characters}
+                key={paginated.id}
               />
               <Paginated
+              info={info}
                 pageNumber={pageNumber}
-                info={info}
                 setPageNumber={setPageNumber}
               />
             </div>

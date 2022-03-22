@@ -1,10 +1,7 @@
 import { FilterButton } from "../FilterButton";
 
-export const Gender = ({ setGender, setPageNumber }) => {
+export const Gender = ({ setGender, setPageNumber, handleSearchAndFilters }) => {
   const genders = ["female", "male", "genderless", "unknown "];
-
-      
-
 
   return (
     <div className="acordion-item">
@@ -16,6 +13,7 @@ export const Gender = ({ setGender, setPageNumber }) => {
           data-bs-target="#collapseThree"
           aria-expanded="false"
           aria-controls="collapseThree"
+          onClick={(e) => handleSearchAndFilters(e)}
         >
           Gender
         </button>
@@ -36,6 +34,7 @@ export const Gender = ({ setGender, setPageNumber }) => {
                 task={setGender}
                 input={item}
                 name="genders"
+                handleSearchAndFilters={handleSearchAndFilters}
               />
             );
           })}

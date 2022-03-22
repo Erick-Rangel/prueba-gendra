@@ -1,6 +1,6 @@
 import { FilterButton } from "../FilterButton";
 
-export const Species = ({ setSpecies, setPageNumber }) => {
+export const Species = ({ setSpecies, setPageNumber, handleSearchAndFilters }) => {
   let species = [
     "Human",
     "Alien",
@@ -24,6 +24,7 @@ export const Species = ({ setSpecies, setPageNumber }) => {
           data-bs-target="#collapseTwo"
           aria-expanded="false"
           aria-controls="collapseTwo"
+          onClick={(e) => handleSearchAndFilters(e)}
         >
           Species
         </button>
@@ -44,6 +45,7 @@ export const Species = ({ setSpecies, setPageNumber }) => {
                 setPageNumber={setPageNumber}
                 task={setSpecies}
                 input={item}
+                handleSearchAndFilters={handleSearchAndFilters}
               />
             );
           })}

@@ -14,7 +14,7 @@ export const Episodes = () => {
   useEffect(() => {
     (async function () {
       let data = await fetch(api).then((res) => res.json());
-      setInfo(data);
+      setInfo(data); // guardando info de la api
 
       let charactersForEpisodes = await Promise.all(
         data.characters.map(async (x) => {
@@ -23,6 +23,7 @@ export const Episodes = () => {
         })
       );
       setResults(charactersForEpisodes);
+    // guardando datos de los personajes por episodio
     })();
   }, [api]);
 

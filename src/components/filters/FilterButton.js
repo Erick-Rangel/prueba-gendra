@@ -1,6 +1,6 @@
 import styles from "./FilterButton.module.scss"
 
-export const FilterButton = ({input, task, setPageNumber,index, name}) =>{
+export const FilterButton = ({input, task, setPageNumber,index, name, handleSearchAndFilters}) =>{
     
     return(
         <div className="form-check">
@@ -10,6 +10,7 @@ export const FilterButton = ({input, task, setPageNumber,index, name}) =>{
             <label
             onClick={(x)=>{
                 task(input); setPageNumber(1);
+                handleSearchAndFilters(input)
             }}
             className="btn btn-outline-primary"
             for={`${name}-${index}`}

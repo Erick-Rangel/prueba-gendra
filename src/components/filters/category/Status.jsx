@@ -26,15 +26,17 @@ export const Status = ({ setStatus, setPageNumber, handleSearchAndFilters }) => 
       >
         <div className="accordion-body d-flex flex-wrap gap-3">
           {status?.map((item, index) => {
-            return(
+            return (
               <FilterButton
-              key={index}
-              index={index}
-              name="status"
-              task={setStatus}
-              setPageNumber={setPageNumber}
-              input={item}
-            />)
+                key={index}
+                index={index}
+                name="status"
+                task={setStatus}
+                setPageNumber={setPageNumber}
+                input={item}
+                handleSearchAndFilters={handleSearchAndFilters}
+              />
+            );
           })}
         </div>
       </div>

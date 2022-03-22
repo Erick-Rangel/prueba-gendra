@@ -1,13 +1,10 @@
-import { GET_CHARACTERS, GET_EPISODES, GET_SEARCH, PAGINATED, GENDER, SPECIES,STATUS} from '../actions/types';
+import { GET_CHARACTERS, GET_SEARCH, PAGINATED, GENDER, SPECIES,STATUS} from '../actions/types';
 
 const initialState = {
   characters: [],
   episodes: [],
   results: [],
   info:[],
-  gender:[],
-  status:[],
-  species:[],
   paginated:[],
 };
 
@@ -17,18 +14,9 @@ export default function RootReducer(state = initialState, action) {
       return {
         ...state,
         characters: action.payload,
-        next: action.next,
-        prev: action.prev,
+        paginated: action.payload,
         info: action.info,
-      };
-
-    case GET_EPISODES:
-      return {
-        ...state,
-        episodes: action.payload,
-        info: action.info,
-        results: action.results,
-      };
+      }
       
       case GET_SEARCH:
       return {
@@ -47,18 +35,21 @@ export default function RootReducer(state = initialState, action) {
       case GENDER:
         return{
           ...state,
-          paginated: action.payload
+          paginated: action.payload,
+          info: action.info
         }
         case SPECIES:
           return{
             ...state,
-            paginated: action.payload
+            paginated: action.payload,
+            info: action.info
           }
 
           case STATUS:
             return{
               ...state,
-              paginadet: action.payload
+              paginated: action.payload,
+              info: action.info
             }
     default:
       return state;
