@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getCharacters, getGender, getPaginated, getSpecies, getStatus } from "../actions";
+import { getCharacters, getGender,getSpecies, getStatus } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "./Card";
 import { SearchBar } from "./SearchBar";
@@ -16,14 +16,12 @@ export const Home = () => {
   const [gender, setGender] = useState("")
   const [species, setSpecies] = useState("")
   
-  const paginated = useSelector((state) => state.paginated);
   
-useEffect(() => {
-  if(paginated <= 0 ){
-dispatch(getCharacters());
-  }
-}, [dispatch]);
-
+  useEffect(() => {
+  dispatch(getCharacters())
+  }, [dispatch]);
+  
+  const paginated = useSelector((state) => state.paginated);
 const info = useSelector((state) => state.info);
 
 
