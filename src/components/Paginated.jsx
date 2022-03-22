@@ -12,23 +12,20 @@ let pageChange = (page) => {
   dispatch(getPaginated(page.selected + 1));
 };
 
-  const [width, setWidth] = useState(window.innerWidth);
-  useEffect(() => {
-    dispatch(getPaginated(pageNumber));
-  }, [dispatch, pageNumber]);
+useEffect(() => {
+  dispatch(getPaginated(pageNumber));
+}, [dispatch, pageNumber]);
 
-  const info = useSelector((state) => state.info);
+const info = useSelector((state) => state.info);
 
-  const updateDimensions = () => {
-    setWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", updateDimensions);
-    return () => {
-      window.removeEventListener("resize", updateDimensions);
-    };
-  }, []);
+const [width, setWidth] = useState(window.innerWidth);
+const updateDimensions = () => {
+  setWidth(window.innerWidth);
+};
+useEffect(() => {
+  window.addEventListener("resize", updateDimensions);
+  return () => window.removeEventListener("resize", updateDimensions);
+}, []);
 
 
   return (
@@ -42,7 +39,6 @@ let pageChange = (page) => {
         className={`${styles.pagination} justify-content-center my-4 gap-4`}
         nextLabel="Next"
         previousLabel="Prev"
-        initialPage={41}
         previousClassName={` ${styles.prev} btn btn-primay fs-5 `}
         nextClassName={`${styles.next} btn btn-primary fs-5 `}
         activeClassName="active"

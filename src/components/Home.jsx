@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getCharacters, getSearch } from "../actions";
+import { getCharacters, getGender, getSearch } from "../actions";
 import { useDispatch, useSelector } from "react-redux";
 import { Card } from "./Card";
 import { SearchBar } from "./SearchBar";
@@ -18,7 +18,8 @@ export const Home = () => {
 
   useEffect(() => {
     dispatch(getCharacters());
-  }, [dispatch]);
+    dispatch(getGender(gender))
+  }, [dispatch, gender]);
 
 const handleSearchAndFilters = (e)=>{
   e.preventDefault();

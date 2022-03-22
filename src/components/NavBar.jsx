@@ -1,16 +1,42 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { NavLink, Link } from "react-router-dom";
+import "./Navbar.module.scss";
+import "../App.css"
 
 export const NavBar = () => {
   return (
-    <nav>
-        <h1>Rick and Morty Fan page</h1>
+    <nav className="navbar navbar-expand-lg navbar-light bg-light mb-4">
+      <div className="container">
+        <Link to="/" className="navbard-brand fs-3 ubuntu">
+          Rick and Morty Fanpage
+        </Link>
+      </div>
 
-
-        <Link   to="/">Home</Link>
-        <Link to="/episodes">Episodes</Link>
-
-
+      <button
+        className="navbar-toggler border-0"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarNavAltMarkup"
+        aria-controls="navbarNavAltMarkup"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span className="fas fa-bars open text-dark"></span>
+        <span className="fas fa-times close text-dark"></span>
+      </button>
+      <div
+        className="collapse navbar-collapse justify-content-end"
+        id="navbarNavAltMarkup"
+      >
+        <div className="navbar-nav fs-5">
+          <NavLink to="/" className="nav-link">
+            Characters
+          </NavLink>
+          <NavLink to="/episodes" className="nav-link">
+            Episodes
+          </NavLink>
+        </div>
+      </div>
     </nav>
-  )
-}
+  );
+};

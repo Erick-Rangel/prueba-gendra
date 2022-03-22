@@ -9,23 +9,22 @@ export const SearchBar = ({pageNumber, search, setPageNumber,setSearch}) => {
 
   const handleInputChange = (e) => {
     e.preventDefault();
-    setPageNumber(pageNumber);
+    setPageNumber(1);
     setSearch(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(getSearch(pageNumber, search));
+    dispatch(getSearch(search));
     setSearch("");
   };
 
   return (
 
     <form 
-    className={`${styles.search} d-flex flex-sm-row flex-columaling-items-center justify-content-center gap-4 mb-5`}
+    className={`${styles.search} d-flex flex-sm-row flex-colum aling-items-center justify-content-center gap-4 mb-5`}
     onSubmit={(e)=>handleSubmit(e)}
     >
-      {console.log(search)}
       <input
         type="text"
         placeholder="Search for characters"

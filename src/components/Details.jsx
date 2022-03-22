@@ -13,7 +13,6 @@ useEffect(()=>{
     axios.get(`https://rickandmortyapi.com/api/character/`+ id)	
     .then(res => {
         setDetails(res.data)
-         console.log(res.data)
     });
 },[dispatch, id])
 
