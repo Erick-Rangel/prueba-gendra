@@ -67,13 +67,11 @@ export const getSearch = (name, pageNumber) => async (dispatch) => {
   });
 };
 
-export const getGender = (gender) =>{
+export const getGender = (gender) =>
   async (dispatch) =>{
     const data = await axios.get(`https://rickandmortyapi.com/api/character/?gender?${gender}`)
-    console.log(data);
     dispatch({
       type: GENDER,
       payload: data.data.results,
     })
   }
-}

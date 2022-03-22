@@ -47,7 +47,7 @@ export default function RootReducer(state = initialState, action) {
       case GENDER:
         return{
           ...state,
-          gender: action.payload
+          paginated: action.payload
         }
         case SPECIES:
           return{
